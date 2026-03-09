@@ -53,10 +53,10 @@ The goal is simple: build the mechanic once, document it properly, and let every
 
 | Developer Type | How This Helps You |
 |---|---|
-| **Learner / Student** | Study real Unity patterns with video walkthroughs and line-by-line code explanations |
+| **Learner / Student** | Study real Unity patterns with video walkthroughs and line-by-line code explanations. Raise and contribute issues |
 | **Indie Developer** | Grab production-ready mechanics and integrate them in minutes, not hours |
 | **Game Jam Participant** | Ship faster by pulling from a library of ready-to-use, pre-tested systems |
-| **Educator / Mentor** | Point students at specific mechanics — every one has a video, a demo scene, and a full explainer |
+| **Educator / Mentor** | Point students at specific mechanics — every one has a video on how to use it , and a full code explainer  |
 | **Open Source Contributor** | Add your mechanic, get it reviewed, and leave a permanent credited entry in this library |
 
 ---
@@ -84,7 +84,7 @@ Each mechanic lives in its own self-contained folder under `Samples~/`. Copy any
 4. Press Play
 ```
 
-Every demo scene is pre-configured — all prefabs wired, all components attached, controls labelled on screen. No setup required.
+There are only scripts that you would need to load up as a package and follow the video to understand how to use it . For some the runnable demos are also present but its not a mandate due to sheer size of the repo and unity projects.
 
 ---
 
@@ -195,7 +195,7 @@ EventBus.Subscribe<PlayerJumpedEvent>(e => audioManager.PlayJumpSound());
 | | |
 |---|---|
 | **Author** | Shubham B |
-| **Namespace** | `GameplayMechanicsUMFOSS.Core` |
+| **Namespace** | `GameplayMechanicsUMFOSS.Core`  need to add a namespace / raise an issue |
 | **Location** | `Runtime/Core/MonoSingleton.cs` |
 | **Category** | Core / Architecture |
 | **Demo Scene** | `Samples~/CoreExamples/Assets/Scenes/DemoScene.unity` |
@@ -235,7 +235,7 @@ GameManager.Instance.AddScore(10);
 | | |
 |---|---|
 | **Author** | [Mayur](https://github.com/M-dev-acc) |
-| **Namespace** | `GameplayMechanicsUMFOSS.Dialogue` |
+| **Namespace** | `GameplayMechanicsUMFOSS.Dialogue` need to add a namespace / raise an issue | 
 | **Location** | [`RuntimeMechanics/Dialogue/2. GenericAndScalableDialogueSystem/`](https://github.com/vijit101/UnityMechanicsFramework/tree/main/RuntimeMechanics/Dailogue/2.%20GenericAndScalableDialogueSystem) |
 | **Category** | Dialogue / Narrative |
 | **Demo Scene** | `Samples~/DialogueExample/Assets/Scenes/DemoScene.unity` |
@@ -246,7 +246,7 @@ GameManager.Instance.AddScore(10);
 A `ScriptableObject`-based dialogue framework for building flexible, branching conversations in Unity. Scale from a single NPC exchange to a full narrative tree without ever modifying the core system. New dialogue is added as data — not code.
 
 **How to use it**
-
+ need to add a fix this doc a bit  / raise an issue
 ```csharp
 using GameplayMechanicsUMFOSS.Dialogue;
 
