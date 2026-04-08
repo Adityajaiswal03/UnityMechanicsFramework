@@ -185,6 +185,7 @@ EventBus.Subscribe<PlayerJumpedEvent>(e => audioManager.PlayJumpSound());
 |---|---|---|---|---|
 | 1 | [MonoSingleton Generic](#1-monosingleton-generic) | Shubham B | Core | — |
 | 2 | [Generic & Scalable Dialogue System](#2-generic--scalable-dialogue-system) | Mayur | Dialogue | [▶ Watch](https://github.com/vijit101/UnityMechanicsFramework/tree/main/RuntimeMechanics/Dailogue/2.%20GenericAndScalableDialogueSystem/Assets/Video%20tutorial) |
+| 3 | [Modular Weapon System](#3-modular-weapon-system) | [Aditya Jaiswal](https://github.com/Adityajaiswal03/), [Atharv Sanjay Jain](https://github.com/Atharv-2004) | Combat | [▶ Watch](https://drive.google.com/file/d/1ktTq_eKYBZZMcLKkuYdw9wi6WS9-AnPG/view?usp=sharing) |
 
 *More mechanics are added with every merged PR. [Contribute yours →](#9-how-to-contribute)*
 
@@ -271,6 +272,68 @@ dialogueSystem.StartDialogue(npcDatabase, onComplete: () =>
 - Clean separation between data (`DialogueDatabase`) and logic (`DialogueSystem`)
 - Add new conversations without touching any existing scripts
 - Scales to large narrative systems without architectural changes
+
+---
+
+### 3. Modular Weapon System
+
+| | |
+|---|---|
+| **Author** | [Aditya Jaiswal](https://github.com/Adityajaiswal03/), [Atharv Sanjay Jain](https://github.com/Atharv-2004) |
+| **Namespace** | `GameplayMechanicsUMFOSS.Combat` |
+| **Location** | `Assets/Runtime/Combat/WeaponBase_UMFOSS.cs` |
+| **Category** | Combat |
+| **Demo Scene** | `Assets/Samples/WeaponSystem/Scene/StandardWeaponSystemDemo.unity` |
+| **Video** | [▶ Watch Walkthrough](https://drive.google.com/file/d/1ktTq_eKYBZZMcLKkuYdw9wi6WS9-AnPG/view?usp=sharing) |
+
+**What it does**
+
+A modular, event-driven framework that lets developers easily drop standard guns, melee swords, or charge-up weapons into any 2D game. It uses capability interfaces (like `IWeaponFirable`) and an Event Bus architecture, meaning the player controller and UI only ever interact with generic interfaces and events, allowing developers to add new weapon types without rewriting any core player or enemy logic.
+
+**How to use it**
+
+```csharp
+using UnityEngine;
+using GameplayMechanicsUMFOSS.Combat;
+
+public class PlayerCombat : MonoBehaviour
+{
+    // Step 1: Reference the weapon using its generic interface
+    private IWeaponFirable equippedWeapon;
+
+    private void Start()
+    {
+        equippedWeapon = GetComponentInChildren<IWeaponFirable>();
+
+        // Step 2: Listen for weapon events decoupling the UI/Analytics from the gun
+        WeaponEventBus.OnWeaponHit(HandleHit);
+    }
+
+    private void Update()
+    {
+        // Step 3: Trigger the weapon generically (works for guns, swords, or charge cannons)
+        if (Input.GetMouseButtonDown(0) && equippedWeapon != null)
+        {
+            equippedWeapon.Fire();
+        }
+        else if (Input.GetMouseButtonUp(0) && equippedWeapon != null)
+        {
+            equippedWeapon.StopFire();
+        }
+    }
+
+    private void HandleHit(WeaponHitEvent evt)
+    {
+        Debug.Log($"Hit {evt.hitData.hitObject.name} for {evt.hitData.damage} damage!");
+    }
+}
+```
+
+**Highlights**
+
+- Capability interface-driven (`IWeaponFirable`) — add new weapon types without touching player or enemy code
+- Supports multiple weapon archetypes out of the box: standard guns, melee swords, and charge-up weapons
+- Event Bus architecture fully decouples UI, analytics, and gameplay reactions from individual weapons
 
 ---
 
