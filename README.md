@@ -184,7 +184,8 @@ EventBus.Subscribe<PlayerJumpedEvent>(e => audioManager.PlayJumpSound());
 | # | Mechanic | Author | Category | Video |
 |---|---|---|---|---|
 | 1 | [MonoSingleton Generic](#1-monosingleton-generic) | Shubham B | Core | — |
-| 2 | [Generic & Scalable Dialogue System](#2-generic--scalable-dialogue-system) | Mayur | Dialogue | [▶ Watch]
+| 2 | [Generic & Scalable Dialogue System](#2-generic--scalable-dialogue-system) | Mayur | Dialogue | [▶ Watch](https://github.com/vijit101/UnityMechanicsFramework/tree/main/RuntimeMechanics/Dailogue/2.%20GenericAndScalableDialogueSystem/Assets/Video%20tutorial) |
+| 7 | [Modular Weapon System](#3-modular-weapon-system) | [Aditya Jaiswal](https://github.com/Adityajaiswal03/), [Atharv Sanjay Jain](https://github.com/Atharv-2004) | Combat | [▶ Watch](https://drive.google.com/file/d/1ktTq_eKYBZZMcLKkuYdw9wi6WS9-AnPG/view?usp=sharing) |
 | 64 | [Utils](#64-Utils) | [Shubham ](https://github.com/vijit101) | Core | [▶ Watch]() |
 (https://github.com/vijit101/UnityMechanicsFramework/tree/main/RuntimeMechanics/Dailogue/2.%20GenericAndScalableDialogueSystem/Assets/Video%20tutorial) |
 
@@ -276,42 +277,65 @@ dialogueSystem.StartDialogue(npcDatabase, onComplete: () =>
 
 ---
 
-### 64 . Utils
+### 3. Modular Weapon System
 
 | | |
 |---|---|
-| **Author** | [Shubham](https://github.com/vijit101) |
-| **Namespace** | `GameplayMechanicsUMFOSS.Core` 
-| **Location** | [`RuntimeMechanics/Dialogue/2. GenericAndScalableDialogueSystem/`](https://github.com/vijit101/UnityMechanicsFramework/tree/main/RuntimeMechanics/Dailogue/2.%20GenericAndScalableDialogueSystem) |
-| **Category** | Dialogue / Narrative |
-| **Demo Scene** | `Samples~/DialogueExample/Assets/Scenes/DemoScene.unity` |
-| **Video** | [▶ Watch Tutorial](https://github.com/vijit101/UnityMechanicsFramework/tree/main/Samples~/dailogueSample/Video) |
+| **Author** | [Aditya Jaiswal](https://github.com/Adityajaiswal03/), [Atharv Sanjay Jain](https://github.com/Atharv-2004) |
+| **Namespace** | `GameplayMechanicsUMFOSS.Combat` |
+| **Location** | `Assets/Runtime/Combat/WeaponBase_UMFOSS.cs` |
+| **Category** | Combat |
+| **Demo Scene** | `Assets/Samples/WeaponSystem/Scene/StandardWeaponSystemDemo.unity` |
+| **Video** | [▶ Watch Walkthrough](https://drive.google.com/file/d/1ktTq_eKYBZZMcLKkuYdw9wi6WS9-AnPG/view?usp=sharing) |
 
 **What it does**
 
-A `ScriptableObject`-based dialogue framework for building flexible, branching conversations in Unity. Scale from a single NPC exchange to a full narrative tree without ever modifying the core system. New dialogue is added as data, not code.
+A modular, event-driven framework that lets developers easily drop standard guns, melee swords, or charge-up weapons into any 2D game. It uses capability interfaces (like `IWeaponFirable`) and an Event Bus architecture, meaning the player controller and UI only ever interact with generic interfaces and events, allowing developers to add new weapon types without rewriting any core player or enemy logic.
 
 **How to use it**
- Note to maintainer: need to fix the part for how to use the dialogue system later / for the one using it find the video and watch it  
+
 ```csharp
-using GameplayMechanicsUMFOSS.Dialogue;
+using UnityEngine;
+using GameplayMechanicsUMFOSS.Combat;
 
-// Step 1: Create DialogueNode ScriptableObjects in the Inspector
-// Step 2: Link them into a DialogueDatabase asset
-// Step 3: Reference the database from your DialogueSystem component
-
-[SerializeField] private DialogueSystem dialogueSystem;
-[SerializeField] private DialogueDatabase npcDatabase;
-
-// Step 4: Start a conversation
-dialogueSystem.StartDialogue(npcDatabase, onComplete: () =>
+public class PlayerCombat : MonoBehaviour
 {
-    Debug.Log("Conversation finished.");
-});
+    // Step 1: Reference the weapon using its generic interface
+    private IWeaponFirable equippedWeapon;
+
+    private void Start()
+    {
+        equippedWeapon = GetComponentInChildren<IWeaponFirable>();
+
+        // Step 2: Listen for weapon events decoupling the UI/Analytics from the gun
+        WeaponEventBus.OnWeaponHit(HandleHit);
+    }
+
+    private void Update()
+    {
+        // Step 3: Trigger the weapon generically (works for guns, swords, or charge cannons)
+        if (Input.GetMouseButtonDown(0) && equippedWeapon != null)
+        {
+            equippedWeapon.Fire();
+        }
+        else if (Input.GetMouseButtonUp(0) && equippedWeapon != null)
+        {
+            equippedWeapon.StopFire();
+        }
+    }
+
+    private void HandleHit(WeaponHitEvent evt)
+    {
+        Debug.Log($"Hit {evt.hitData.hitObject.name} for {evt.hitData.damage} damage!");
+    }
+}
 ```
 
 **Highlights**
 
+- Capability interface-driven (`IWeaponFirable`) — add new weapon types without touching player or enemy code
+- Supports multiple weapon archetypes out of the box: standard guns, melee swords, and charge-up weapons
+- Event Bus architecture fully decouples UI, analytics, and gameplay reactions from individual weapons
 - Fully data-driven — all dialogue lives in ScriptableObject assets, not in code
 - Supports branching and multi-path dialogue trees
 - Clean separation between data (`DialogueDatabase`) and logic (`DialogueSystem`)
