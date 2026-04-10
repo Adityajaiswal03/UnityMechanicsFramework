@@ -185,7 +185,9 @@ EventBus.Subscribe<PlayerJumpedEvent>(e => audioManager.PlayJumpSound());
 |---|---|---|---|---|
 | 1 | [MonoSingleton Generic](#1-monosingleton-generic) | Shubham B | Core | — |
 | 2 | [Generic & Scalable Dialogue System](#2-generic--scalable-dialogue-system) | Mayur | Dialogue | [▶ Watch](https://github.com/vijit101/UnityMechanicsFramework/tree/main/RuntimeMechanics/Dailogue/2.%20GenericAndScalableDialogueSystem/Assets/Video%20tutorial) |
-| 3 | [Modular Weapon System](#3-modular-weapon-system) | [Aditya Jaiswal](https://github.com/Adityajaiswal03/), [Atharv Sanjay Jain](https://github.com/Atharv-2004) | Combat | [▶ Watch](https://drive.google.com/file/d/1ktTq_eKYBZZMcLKkuYdw9wi6WS9-AnPG/view?usp=sharing) |
+| 7 | [Modular Weapon System](#3-modular-weapon-system) | [Aditya Jaiswal](https://github.com/Adityajaiswal03/), [Atharv Sanjay Jain](https://github.com/Atharv-2004) | Combat | [▶ Watch](https://drive.google.com/file/d/1ktTq_eKYBZZMcLKkuYdw9wi6WS9-AnPG/view?usp=sharing) |
+| 64 | [Utils](#64-Utils) | [Shubham ](https://github.com/vijit101) | Core | [▶ Watch]() |
+(https://github.com/vijit101/UnityMechanicsFramework/tree/main/RuntimeMechanics/Dailogue/2.%20GenericAndScalableDialogueSystem/Assets/Video%20tutorial) |
 
 *More mechanics are added with every merged PR. [Contribute yours →](#9-how-to-contribute)*
 
@@ -334,6 +336,11 @@ public class PlayerCombat : MonoBehaviour
 - Capability interface-driven (`IWeaponFirable`) — add new weapon types without touching player or enemy code
 - Supports multiple weapon archetypes out of the box: standard guns, melee swords, and charge-up weapons
 - Event Bus architecture fully decouples UI, analytics, and gameplay reactions from individual weapons
+- Fully data-driven — all dialogue lives in ScriptableObject assets, not in code
+- Supports branching and multi-path dialogue trees
+- Clean separation between data (`DialogueDatabase`) and logic (`DialogueSystem`)
+- Add new conversations without touching any existing scripts
+- Scales to large narrative systems without architectural changes
 
 ---
 
