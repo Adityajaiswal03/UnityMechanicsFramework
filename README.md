@@ -277,7 +277,7 @@ dialogueSystem.StartDialogue(npcDatabase, onComplete: () =>
 
 ---
 
-### 3. Modular Weapon System
+### 7. Modular Weapon System
 
 | | |
 |---|---|
@@ -286,7 +286,7 @@ dialogueSystem.StartDialogue(npcDatabase, onComplete: () =>
 | **Location** | `Assets/Runtime/Combat/WeaponBase_UMFOSS.cs` |
 | **Category** | Combat |
 | **Demo Scene** | `Assets/Samples/WeaponSystem/Scene/StandardWeaponSystemDemo.unity` |
-| **Video** | [▶ Watch Walkthrough](https://drive.google.com/file/d/1ktTq_eKYBZZMcLKkuYdw9wi6WS9-AnPG/view?usp=sharing) |
+| **Video** | [▶ Watch Walkthrough](https://github.com/Adityajaiswal03/UnityMechanicsFramework/blob/mechanic/weapon-system/Samples~/WeaponSystemSample/ModularWeaponSystem.mp4.zip) |
 
 **What it does**
 
