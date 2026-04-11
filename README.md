@@ -283,9 +283,9 @@ dialogueSystem.StartDialogue(npcDatabase, onComplete: () =>
 |---|---|
 | **Author** | [Aditya Jaiswal](https://github.com/Adityajaiswal03/), [Atharv Sanjay Jain](https://github.com/Atharv-2004) |
 | **Namespace** | `GameplayMechanicsUMFOSS.Combat` |
-| **Location** | `Runtime/Combat/3. GenericWeaponSystem/WeaponBase_UMFOSS.cs` |
+| **Location** | `Runtime/Combat/3.ModularWeaponSystem/WeaponBase_UMFOSS.cs` |
 | **Category** | Combat |
-| **Demo Scene** | `Assets/Samples/WeaponSystem/Scene/StandardWeaponSystemDemo.unity` |
+| **Demo Scenes** | Inside `Samples~/WeaponSystemSample/ModularWeaponSystem.zip` → `ModularWeaponSystem/Assets/Scene/StandardWeaponSystemDemo.unity`, `MeeleWeaponSystemDemo.unity`, `UnorthodoxWeaponSystemDemo.unity` |
 | **Video** | [▶ Watch Walkthrough](https://github.com/Adityajaiswal03/UnityMechanicsFramework/blob/mechanic/weapon-system/Samples~/WeaponSystemSample/ModularWeaponSystem.mp4.zip) |
 
 **What it does**
