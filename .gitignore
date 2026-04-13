@@ -73,3 +73,10 @@ crashlytics-build.properties
 
 # Additional junk files
 *.ini
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Vim swap files
+*.swp
