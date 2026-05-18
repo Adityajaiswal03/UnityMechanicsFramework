@@ -80,3 +80,7 @@ Thumbs.db
 
 # Vim swap files
 *.swp
+
+# Video stitching workspace (raw takes are local-only, never committed)
+**/raw-takes/
+**/concat-list.txt
